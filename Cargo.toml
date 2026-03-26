@@ -1,0 +1,19 @@
+[package]
+name = "trademark-category"
+version = "0.1.0"
+edition = "2024"
+description = "商标局回文分类归档器"
+authors = ["KimdowEin"]
+license = "MIT"
+
+[dependencies]
+anyhow = "1.0.102"
+clap = { version = "4.4", features = ["derive"] }
+md-5 = "0.10.6"
+regex = "1.10"
+tap = "1.0.1"
+walkdir = "2.4"
+
+[profile.release]
+opt-level = 3
+lto = true
