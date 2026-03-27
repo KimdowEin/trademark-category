@@ -17,6 +17,7 @@ zip = "2.2"
 tempfile = "3.14"
 rayon = "1.11.0"
 uuid = { version = "1.23.0", features = ["v4"] }
+indicatif = { version = "0.18.4", features = ["rayon"] }
 
 [profile.release]
 opt-level = 3
