@@ -5,15 +5,11 @@ use clap::Parser;
 use rayon::iter::{IntoParallelRefIterator, ParallelIterator};
 use tap::{Conv, Pipe, Tap};
 use tempfile::TempDir;
+use trademark_reply_category::{
+    archive::ArchiveContext, args::Args, progress::BAR, trademark::TrademarkReply,
+};
 use uuid::Uuid;
 use walkdir::WalkDir;
-
-use crate::{archive::ArchiveContext, args::Args, progress::BAR, trademark::TrademarkReply};
-
-mod archive;
-mod args;
-mod progress;
-mod trademark;
 
 fn main() -> Result<(), Error> {
     let args = Args::parse();

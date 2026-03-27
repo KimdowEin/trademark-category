@@ -12,13 +12,13 @@ cargo build --release && cargo install --path
 
 ```bash
 # 基本用法（按注册号分类）
-trademark-category -i 下载文件夹 -o 归档文件夹
+trademark-reply-category -i 下载文件夹 -o 归档文件夹
 
 # 按回文类型分类
-trademark-category -i 下载文件夹 -o 归档文件夹 -m doc
+trademark-reply-category -i 下载文件夹 -o 归档文件夹 -m doc
 
 # 自动解压 ZIP 文件后再处理
-trademark-category -x -i 下载文件夹 -o 归档文件夹
+trademark-reply-category -x -i 下载文件夹 -o 归档文件夹
 ```
 
 ## 参数说明
