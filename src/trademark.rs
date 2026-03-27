@@ -1,4 +1,5 @@
 use std::{
+    fs,
     path::{Path, PathBuf},
     sync::LazyLock,
 };
@@ -48,7 +49,7 @@ impl TrademarkReply {
     }
 
     pub fn gen_md5(mut self) -> Result<Self, Error> {
-        let content = std::fs::read(&self.origin_path)?;
+        let content = fs::read(&self.origin_path)?;
 
         self.md5 = Md5::new()
             .tap_mut(|hasher| hasher.update(&content))
@@ -57,7 +58,7 @@ impl TrademarkReply {
         Ok(self)
     }
 
-    pub fn move_file(self, mode: Category, dir: &PathBuf) -> Result<(), Error> {
+    pub fn move_file(self, mode: Category, dir: &PathBuf) -> Result<Self, Error> {
         let aim_dir = match mode {
             Category::Doc => dir.join(&self.document_name),
             Category::Id => dir.join(&self.trademark_id),
@@ -68,10 +69,9 @@ impl TrademarkReply {
             self.document_name, self.trademark_id, self.application_id, self.md5
         );
 
-        std::fs::create_dir_all(&aim_dir)?;
-        std::fs::copy(&self.origin_path, aim_dir.join(name))?;
-        std::fs::remove_file(&self.origin_path)?;
+        fs::create_dir_all(&aim_dir)?;
+        fs::rename(&self.origin_path, aim_dir.join(name))?;
 
-        Ok(())
+        Ok(self)
     }
 }

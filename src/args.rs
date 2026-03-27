@@ -9,13 +9,17 @@ pub struct Args {
     #[arg(short, long, default_value = ".")]
     pub input: PathBuf,
 
-    /// 输出文件夹
+    /// 输出文件夹路径
     #[arg(short, long, default_value = ".")]
     pub output: PathBuf,
 
     /// 分类模式
     #[arg(short, long, value_enum, default_value_t = Category::Id)]
     pub mode: Category,
+
+    /// 解压模式
+    #[arg(short = 'x', long, default_value_t = false)]
+    pub archive: bool,
 }
 
 #[derive(ValueEnum, Debug, Clone, Copy)]
